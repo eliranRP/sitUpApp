@@ -18,6 +18,7 @@
 
       $scope.logout = function () {
           Authentication.logout();
+          mainView.router.loadPage("login.html")
       }; //logout
 
       $scope.register = function () {
