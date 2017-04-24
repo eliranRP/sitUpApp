@@ -1,0 +1,123 @@
+﻿<div data-page="home" class="page with-subnavbar" ng-controller="HomeController">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="center">ארועים</div>
+            <div class="right"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-inner">
+                <div class="center">ארועים</div>
+                <div class="right"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+            </div>
+            <div class="subnavbar">
+                <!-- Buttons row as tabs controller in Subnavbar-->
+                <div class="buttons-row">
+                    <!-- Link to 1st tab, active -->
+                    <a href="#tab11" class="button active tab-link">היום</a>
+                    <!-- Link to 2nd tab -->
+                    <a href="#tab22" class="button tab-link">שבוע קרוב</a>
+                    <!-- Link to 3rd tab -->
+                    <a href="#tab33" class="button tab-link">חודש קרוב</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toolbar tabbar">
+        <div class="toolbar-inner">
+            <a href="#tab11" class="active tab-link">היום</a>
+            <a href="#tab22" class="tab-link">שבוע קרוב</a>
+            <a href="#tab33" class="tab-link">חודש קרוב</a>
+        </div>
+    </div>
+    <!-- Tabs swipeable wrapper, required to switch tabs with swipes -->
+    <div class="tabs-swipeable-wrap">
+        <!-- Tabs, tabs wrapper -->
+        <div class="tabs">
+            <!-- NASA, active by default -->
+            <div id="tab11" class="page-content tab active">
+                <div class="list-block media-list">
+                    <ul>
+                        <li ng-repeat="(key,game) in events">
+                            <a ng-click="go('stadiumGate.html',game)" class="item-link item-content">
+                                <div class="item-media">
+                                    <img ng-src="{{game.eventImage}}" />
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">
+                                            {{game.homeTeam.City +game.homeTeam.Name}} vs. {{game.awayTeam.City + game.homeTeam.awayTeam.Name}}
+
+                                        </div>
+                                    </div>
+                                    <div class="item-subtitle">
+                                        {{game.date + ' ' + game.time}}
+                                    </div>
+                                    <div class="item-text">{{game.location}}</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Tech News -->
+            <div id="tab22" class="page-content tab">
+                <div class="content-block">
+                    <div class="list-block media-list">
+                        <ul>
+                            <li ng-repeat="(key,game) in events">
+                                <a ng-click="go('stadiumGate.html',game)" class="item-link item-content">
+                                    <div class="item-media">
+                                        <img ng-src="{{game.eventImage}}" />
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">
+                                                {{game.homeTeam.City +game.homeTeam.Name}} vs. {{game.awayTeam.City + game.homeTeam.awayTeam.Name}}
+
+                                            </div>
+                                        </div>
+                                        <div class="item-subtitle">
+                                            {{game.date + ' ' + game.time}}
+                                        </div>
+                                        <div class="item-text">{{game.location}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Games News -->
+            <div id="tab33" class="page-content tab">
+                <div class="content-block">
+                    <div class="list-block media-list">
+                        <ul>
+                            <li ng-repeat="(key,game) in events">
+                                <a ng-click="go('stadiumGate.html',game)" class="item-link item-content">
+                                    <div class="item-media">
+                                        <img ng-src="{{game.eventImage}}" />
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">
+                                                {{game.homeTeam.City +game.homeTeam.Name}} vs. {{game.awayTeam.City + game.homeTeam.awayTeam.Name}}
+
+                                            </div>
+                                        </div>
+                                        <div class="item-subtitle">
+                                            {{game.date + ' ' + game.time}}
+                                        </div>
+                                        <div class="item-text">{{game.location}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
