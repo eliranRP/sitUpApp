@@ -1,0 +1,44 @@
+﻿<div data-page="swiper-multiple" class="page" ng-controller="seatsController">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+            <div class="center">רכישה</div>
+            <div class="right"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+        </div>
+    </div>
+    <div class="page-content">
+        <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+        <div class="list-block">
+            <div class="content-block-title"></div>
+            <ul>
+                <li>
+                    <div ng-repeat="(key,seat) in seats" class="card ks-card-header-pic">
+                        <div style="background-image:url({{seat.imageUrl}})" valign="top" class="card-header color-white no-border">{{seat.amount}} ש"ח</div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <p class="color-gray" style="margin-bottom:0;">{{currentEvent.homeTeam.City +currentEvent.homeTeam.Name}} vs. {{currentEvent.awayTeam.City + currentEvent.homeTeam.awayTeam.Name}}</p>
+                                <p class="color-gray" style="margin:0;">{{currentEvent.date + ' ' + currentEvent.time}}</p>
+                                <p> הכסא ממקום בשער {{currentGate.number}} ,  מספר כיסא - {{seat.seatNumber}} ,  שורה -  {{seat.row}}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="color:dimgrey;">
+                            <a style="padding-top:.4rem;" href="#" class="link ks-pb-popup-dark">
+                                <i class="material-icons">remove_red_eye</i>
+                                <span class="card-text-bottom">{{seat.counter}}</span>
+                            </a>
+                            <a ng-click="addCount(seat.id)" href="#" class="link">רכישה</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="toolbar toolbar-bottom">
+        <div class="toolbar-inner">
+            <a href="ticketsByCamera.html" class="link"><i class="material-icons" style="color:rgba(255, 255, 255, 0.7)">photo_library</i></a>
+            <a href="#" class="link"><i class="material-icons" style="color:rgba(255, 255, 255, 0.7);display:none;"></i></a>
+            <a href="#" class="link"><i class="material-icons" style="color:rgb(255, 255, 255)">list</i></a>
+        </div>
+    </div>
+</div>

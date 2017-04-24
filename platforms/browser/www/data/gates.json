@@ -1,0 +1,24 @@
+﻿{
+  "id": 0,
+  "price": {
+    "currency": "שח",
+    "max": 0,
+    "min": 0
+  },
+  "areas": {
+    "id": 1,
+    "name": "שורה",
+    "seats": {
+      "id": 1,
+      "avaliable": true,
+      "row": 0,
+      "seatNumber": 0,
+      "barcode": "",
+      "price": {
+        "currency": "שח",
+        "amount": 0
+      }
+    }
+  }
+
+}

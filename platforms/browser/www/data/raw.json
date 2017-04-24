@@ -1,0 +1,106 @@
+﻿{
+  "seatsByEventIdAndGateId": {
+    "33941": [
+        {
+          "amount": 88,
+          "avaliable": true,
+          "barcode": 4956540,
+          "currency": "שח",
+          "id": 1,
+          "imageUrl": "img/stadium/stad1.jpg",
+          "row": 1,
+          "seatNumber": 1
+        },
+        {
+          "amount": 376,
+          "avaliable": true,
+          "barcode": 9382048,
+          "currency": "שח",
+          "id": 2,
+          "imageUrl": "img/stadium/stad2.jpg",
+          "row": 1,
+          "seatNumber": 2
+        },
+        {
+          "amount": 224,
+          "avaliable": false,
+          "barcode": 4761498,
+          "currency": "שח",
+          "id": 3,
+          "imageUrl": "img/stadium/stad3.jpg",
+          "row": 1,
+          "seatNumber": 3
+        },
+        {
+          "amount": 298,
+          "avaliable": false,
+          "barcode": 9195442,
+          "currency": "שח",
+          "id": 4,
+          "imageUrl": "img/stadium/stad4.jpg",
+          "row": 1,
+          "seatNumber": 4
+        },
+        {
+          "amount": 508,
+          "avaliable": true,
+          "barcode": 4902092,
+          "currency": "שח",
+          "id": 5,
+          "imageUrl": "img/stadium/stad5.jpg",
+          "row": 1,
+          "seatNumber": 5
+        },
+        {
+          "amount": 368,
+          "avaliable": true,
+          "barcode": 9644038,
+          "currency": "שח",
+          "id": 6,
+          "imageUrl": "img/stadium/stad6.jpg",
+          "row": 1,
+          "seatNumber": 6
+        },
+        {
+          "amount": 343,
+          "avaliable": true,
+          "barcode": 5626554,
+          "currency": "שח",
+          "id": 7,
+          "imageUrl": "img/stadium/stad7.jpg",
+          "row": 1,
+          "seatNumber": 7
+        },
+        {
+          "amount": 144,
+          "avaliable": false,
+          "barcode": 6635803,
+          "currency": "שח",
+          "id": 8,
+          "imageUrl": "img/stadium/stad8.jpg",
+          "row": 1,
+          "seatNumber": 8
+        },
+        {
+          "amount": 409,
+          "avaliable": true,
+          "barcode": 4055634,
+          "currency": "שח",
+          "id": 9,
+          "imageUrl": "img/stadium/stad9.jpg",
+          "row": 1,
+          "seatNumber": 9
+        },
+        {
+          "amount": 62,
+          "avaliable": true,
+          "barcode": 8033913,
+          "currency": "שח",
+          "id": 10,
+          "imageUrl": "img/stadium/stad10.jpg",
+          "row": 1,
+          "seatNumber": 10
+        }
+      ]
+  }
+}
