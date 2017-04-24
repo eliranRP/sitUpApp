@@ -1,0 +1,68 @@
+﻿<div data-page="form-storage" class="page" ng-controller="RegistrationController">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+            <div class="center">רישום</div>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="content-block-title">פרטים אישיים</div>
+        <form name="myform" class="store-data list-block">
+            <div class="list-block inputs-list">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title floating-label">שם מלא</div>
+                                <div class="item-input">
+                                    <input ng-required="true" ng-model="user.displayName" type="text" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title floating-label">אימייל</div>
+                                <div class="item-input">
+                                    <input ng-required="true" ng-model="user.email" type="email" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title floating-label">סיסמה</div>
+                                <div class="item-input">
+                                    <input ng-required="true" ng-model="user.password" type="password" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title floating-label">טלפון</div>
+                                <div class="item-input">
+                                    <input ng-required="true" ng-model="user.tel" type="tel" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+        <div class="content-block">
+            <p class="buttons-row">
+                <button type="submit" ng-disabled="myform.$invalid" ng-click="register()" class="button button-raised text">הירשם</button>
+            </p>
+        </div>
+
+    </div>
+</div>
