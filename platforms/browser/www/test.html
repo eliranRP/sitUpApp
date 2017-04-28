@@ -1,36 +1,244 @@
-﻿
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <link href="lib/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <link href="lib/w3.css" rel="stylesheet" />
+    <link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
+    <style>
+        input {
+            text-align: right !important;
+        }
 
-<div data-page="form-storage" class="page" ng-controller="test">
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-            <div class="center">רישום</div>
-        </div>
+        table {
+            width: 100%;
+        }
+
+        footer {
+            position: fixed;
+            height: 60px;
+            z-index: 100;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #content {
+            padding-bottom: 80px;
+        }
+
+        .sender {
+            text-decoration: underline;
+        }
+
+        .msgContent {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .msgContainer {
+            padding: 5px;
+        }
+
+        .time {
+            float: left;
+        }
+    </style>
+
+</head>
+<body dir="rtl">
+
+    <div data-role="page" id="register">
+
+        <input type="text" placeholder="הכנס שם משתמש" id="user_name" />
+
+        <a class="ui-btn" onclick="register()">שלח</a>
     </div>
-    <div class="page-content">
-        <div class="list-block">
-            <ul>
-                <li>
-                    <!-- Smart select, will be opened in Picker -->
-                    <a href="#" class="item-link smart-select" data-open-in="picker">
-                        ... same Smart select Fruits structure as in previous example ...
-                    </a>
-                </li>
-                <li>
-                    <!-- Smart select, will be opened in Picker with custom close text -->
-                    <a href="#" class="item-link smart-select" data-open-in="picker" data-picker-close-text="Close Cars">
-                        ... same Smart select Cars structure as in previous example ...
-                    </a>
-                </li>
-                <li>
-                    <!-- Smart select, will be opened in Picker with custom height -->
-                    <a href="#" class="item-link smart-select" data-open-in="picker" data-picker-height="400px">
-                        ... same Smart select Cars structure as in previous example ...
-                    </a>
-                </li>
-            </ul>
+
+
+    <div data-role="page" id="sendPush">
+
+        <div class="w3-container w3-blue w3-center">
+            <h1>צ'אט כולל - test</h1>
         </div>
 
+        <div id="content">
+
+        </div>
+
+        <footer class="w3-blue">
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="msg" placeholder="תוכן הודעה..." />
+                    </td>
+                    <td>
+                        <i class="fa fa-send" onclick="sendMsg()"></i>
+                    </td>
+                </tr>
+            </table>
+
+        </footer>
     </div>
-</div>
+
+
+    <script>
+
+
+        if (localStorage.user_name) {
+            location.href = "#sendPush";
+        }
+
+
+        var user_platform;
+        var notification_id;
+        var SENDER_ID = "588870694508";
+        //var webServerAddress = "../";
+        var webServerAddress = "http://proj.ruppin.ac.il/igroup81/prod/";
+
+        document.addEventListener("deviceready", onCordovaReady, false);
+
+
+
+        function onCordovaReady()
+        {
+
+                var push = PushNotification.init({
+                    "android": {
+                        "senderID": SENDER_ID
+                    },
+                    "ios": {
+                        "alert": "true",
+                        "badge": "true",
+                        "sound": "true",
+                        "senderID": SENDER_ID,
+                        "gcmSandbox": true
+                    },
+                    "windows": {}
+                });
+
+
+                push.on('registration', function (data) {
+                    notification_id = data.registrationId;
+
+                    if (IsIphone()) {
+                        user_platform = "ios";
+                    }
+                    else {
+                        user_platform = "android";
+                    }
+                });
+
+                push.on('notification', function (data) {
+                    console.log("notification event");
+
+                    if (data.additionalData.foreground && data.additionalData.sender != localStorage.user_name) {
+                        alert('message:',data.message)
+                        addMessageToChat(data.additionalData.sender, data.message);
+                    }
+                    else {
+
+                    }
+
+
+                    push.finish(function () {
+                        console.log('finish successfully called');
+                    });
+                });
+
+                push.on('error', function (e) {
+                    console.log("push error");
+                });
+        }
+
+
+        function IsIphone() {
+            var userAgent = navigator.userAgent;
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
+        function sendMsg()
+        {
+            if ($("#msg").val() == "")
+            {
+                return;
+            }
+
+            $.ajax({
+
+                type: "POST",
+                url: webServerAddress + "NotificationCenter.asmx/SendMessage",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ user_name: localStorage.user_name, msg: $("#msg").val() }),
+                dataType: "json",
+                success: function (data) {
+
+
+                },
+                error: function () {
+
+                }
+
+            })
+
+            addMessageToChat(localStorage.user_name, $("#msg").val());
+            $("#msg").val('');
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function register()
+        {
+            if ($("#user_name").val() == "")
+            {
+                alert("יש להכניס שם משתמש");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: webServerAddress + "NotificationCenter.asmx/SetUserNotIdAndPlatform",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ user_name: $("#user_name").val(), not_id: notification_id, platform: user_platform }),
+                dataType: "json",
+                success: function (data) {
+
+                    localStorage.user_name = $("#user_name").val();
+                    location.href = "#sendPush"
+                },
+                error: function () {
+                    //alert("error");
+                }
+            });
+
+
+
+        }
+
+        function addMessageToChat(name, messageContent)
+        {
+            var d = new Date();
+
+            var $d = $("<div>").addClass("msgContainer");
+            var $p = $("<p>").text(messageContent).addClass("msgContent");
+            var $s = $("<span>").text(name).addClass("sender");
+            var $t = $("<span>").text(d.getHours() + ":" + d.getMinutes()).addClass("time");
+
+            $("#content").append($d.append($s, $t, $p));
+
+        }
+
+    </script>
+</body>
+</html>

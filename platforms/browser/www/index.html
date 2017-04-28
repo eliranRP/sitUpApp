@@ -1,100 +1,64 @@
 ﻿<!DOCTYPE html>
-<html ng-app="AngularApp">
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
 <head>
-    <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <!-- Your app title -->
-    <title>My App</title>
-    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
-        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
-     -->
-    <link href="css/framework7.material.css" rel="stylesheet" />
-    <link href="css/framework7.material.colors.css" rel="stylesheet" />
-    <link href="css/framework7.material.rtl.css" rel="stylesheet" />
-    <link href="css/kitchen-sink.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/index.css">
-    <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
-    <!-- Font Awesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="cordova.js"></script>
-
-
-    <link rel="icon" href="img/icon.png">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-
-    <!-- AngularJS -->
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular/angular-route.min.js"></script>
-    <script src="lib/angular/angular-animate.min.js"></script>
-    <script src="lib/angular/angular-sanitize.min.js"></script>
-
-    <script src="lib/angular/firebase-3.6.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
     <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDClONV1NQnF1jyeONix-BHIe1mGfF4Dys",
-            authDomain: "situp-50a6b.firebaseapp.com",
-            databaseURL: "https://situp-50a6b.firebaseio.com",
-            projectId: "situp-50a6b",
-            storageBucket: "situp-50a6b.appspot.com",
-            messagingSenderId: "741120698728"
-        };
-        firebase.initializeApp(config);
+       // location.href = "test.html";
+       location.href = "pushExample.html";
     </script>
-    <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-
-
-
-    <script type="text/javascript" src="js/framework7.js"></script>
-    <script type="text/javascript" src="js/framework7.angular.hook.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/services/authentication.js"></script>
-
-    <!--controllers-->
-    <script src="js/controllers/registration.js"></script>
-    <script src="js/controllers/events.js"></script>
-    <script src="js/controllers/stadium.js"></script>
-    <script src="js/controllers/seats.js"></script>
-    <script src="js/controllers/swiprToDelete.js"></script>
-    <script src="js/controllers/userProfile.js"></script>
-    <script src="js/controllers/memberTickets.js"></script>
-    <script src="js/controllers/chairHunter.js"></script>
-    <script src="data/test.js"></script>
-
-
 </head>
-<body ng-controller="RootController" ng-cloak>
-    <div class="statusbar-overlay"></div>
-    <div class="panel-overlay"></div>
-    <panel-left></panel-left>
-    <panel-right></panel-right>
-    <div class="views">
-        <div class="view view-main">
-            <div class="pages navbar-fixed">
-                <!-- this is where the dynamically pages will load -->
-            </div>
+
+<body>
+    <div class="app">
+        <h1>PhoneGap</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
         </div>
     </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
 </body>
+
 </html>
