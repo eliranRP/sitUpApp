@@ -6,7 +6,7 @@
 
   <preference name="android-build-tool" value="gradle" />
   <gap:plugin name="phonegap-plugin-push" source="npm" spec="1.7.2">
-    <param name="SENDER_ID" value="506096860582" />
+    <param name="SENDER_ID" value="588870694508" />
   </gap:plugin>
 
   
