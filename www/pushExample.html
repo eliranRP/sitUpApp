@@ -124,7 +124,7 @@
 
             push.on('registration', function (data) {
                 notification_id = data.registrationId;
-                alert('this is noteID:', notification_id);
+                alert(notification_id);
 
                 if (IsIphone()) {
                     user_platform = "ios";
@@ -135,7 +135,7 @@
             });
 
             push.on('notification', function (data) {
-                console.log("notification event");
+                alert("notification event");
 
                 if (data.additionalData.foreground && data.additionalData.sender != localStorage.user_name) {
 
@@ -147,12 +147,12 @@
 
 
                 push.finish(function () {
-                    console.log('finish successfully called');
+                    alert('finish successfully called');
                 });
             });
 
             push.on('error', function (e) {
-                console.log("push error");
+                alert("push error");
             });
         }
 
@@ -186,10 +186,10 @@ alert('this is noteID:', notification_id);
                 dataType: "json",
                 success: function (data) {
 
-                    alert(data.d)
+                    alert('sendMsg:success')
                 },
                 error: function (er) {
-                    alert(er.message)
+                    alert('sendMsg:error')
 
                 }
 
