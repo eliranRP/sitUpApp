@@ -97,7 +97,7 @@
 
         var user_platform;
         var notification_id;
-        var SENDER_ID = "506096860582";
+        var SENDER_ID = "588870694508";
         //var webServerAddress = "../";
         var webServerAddress = "http://proj.ruppin.ac.il/igroup81/prod/";
 
@@ -124,7 +124,7 @@
 
             push.on('registration', function (data) {
                 notification_id = data.registrationId;
-                console.log('this is noteID:', notification_id);
+                alert('this is noteID:', notification_id);
 
                 if (IsIphone()) {
                     user_platform = "ios";
@@ -173,7 +173,7 @@
             if ($("#msg").val() == "") {
                 return;
             }
-
+alert('this is noteID:', notification_id);
             $.ajax({
 
                 type: "POST",
