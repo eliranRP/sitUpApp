@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "741120698728",
+    "firebase_url": "https://situp-50a6b.firebaseio.com",
+    "project_id": "situp-50a6b",
+    "storage_bucket": "situp-50a6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741120698728:android:1488fb93191e4e33",
+        "android_client_info": {
+          "package_name": "com.google.SitUp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741120698728-lrud6ch60oa0e9jqpoh5uk8947ms8ng9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJOCkYD84vYVmPlPyzUJGRqA6e1NjYlx4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
