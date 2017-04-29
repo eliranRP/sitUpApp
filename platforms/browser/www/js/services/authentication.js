@@ -3,10 +3,14 @@
   function ($rootScope, $firebaseAuth, $firebaseObject) {
 
       console.log('auth')
-      document.addEventListener("deviceready", onCordovaReady, false);
-
 
       var SENDER_ID = "588870694508";
+      document.addEventListener("deviceready", onCordovaReady, false);
+
+      var notification_id;
+      var user_platform;
+      console.log('index.js');
+
       function onCordovaReady() {
           console.log('onCordovaReady')
           var push = PushNotification.init({
@@ -22,11 +26,9 @@
               },
               "windows": {}
           });
-
-
           push.on('registration', function (data) {
-              $rootScope.notification_id = data.registrationId;
-              console.log('this is noteID:', $rootScope.notification_id);
+              notification_id = data.registrationId;
+              console.log('this is noteID:' + notification_id);
 
               if (IsIphone()) {
                   user_platform = "ios";
@@ -35,7 +37,6 @@
                   user_platform = "android";
               }
           });
-
           push.on('notification', function (data) {
               console.log("notification event");
 
@@ -52,13 +53,10 @@
                   console.log('finish successfully called');
               });
           });
-
           push.on('error', function (e) {
               console.log("push error");
           });
       }
-
-
 
       function IsIphone() {
           var userAgent = navigator.userAgent;
