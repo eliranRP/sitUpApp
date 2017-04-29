@@ -2,6 +2,76 @@
   ['$rootScope', '$firebaseAuth', '$firebaseObject',
   function ($rootScope, $firebaseAuth, $firebaseObject) {
 
+      console.log('auth')
+      document.addEventListener("deviceready", onCordovaReady, false);
+
+
+      var SENDER_ID = "588870694508";
+      function onCordovaReady() {
+          console.log('onCordovaReady')
+          var push = PushNotification.init({
+              "android": {
+                  "senderID": SENDER_ID
+              },
+              "ios": {
+                  "alert": "true",
+                  "badge": "true",
+                  "sound": "true",
+                  "senderID": SENDER_ID,
+                  "gcmSandbox": true
+              },
+              "windows": {}
+          });
+
+
+          push.on('registration', function (data) {
+              $rootScope.notification_id = data.registrationId;
+              console.log('this is noteID:', $rootScope.notification_id);
+
+              if (IsIphone()) {
+                  user_platform = "ios";
+              }
+              else {
+                  user_platform = "android";
+              }
+          });
+
+          push.on('notification', function (data) {
+              console.log("notification event");
+
+              if (data.additionalData.foreground && data.additionalData.sender != localStorage.user_name) {
+
+                  addMessageToChat(data.additionalData.sender, data.message);
+              }
+              else {
+
+              }
+
+
+              push.finish(function () {
+                  console.log('finish successfully called');
+              });
+          });
+
+          push.on('error', function (e) {
+              console.log("push error");
+          });
+      }
+
+
+
+      function IsIphone() {
+          var userAgent = navigator.userAgent;
+
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              return true;
+          }
+          else {
+
+              return false;
+          }
+      }
+
       var ref = firebase.database().ref();
       var auth = $firebaseAuth();
       var myObject;
@@ -68,6 +138,7 @@
                       var regRef = ref.child('users')
                         .child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
+                            notification_id:$rootScope.notification_id,
                             uid: regUser.uid,
                             displayName: user.displayName,
                             password: user.password,
