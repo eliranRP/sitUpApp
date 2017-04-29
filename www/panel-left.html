@@ -1,0 +1,92 @@
+﻿<div class="panel panel-left panel-cover" ng-controller="RegistrationController">
+    <div class="view navbar-fixed">
+        <div class="pages">
+            <div data-page="panel-left" class="page">
+                    <div class="page-content">
+                        <div class="content-block">
+                            <div style="text-align:center;">
+                                <img class="avatar-panel-left" ng-src="{{currentUser.photoURL}}" />
+                            </div>
+                            <div class="content-block-title" style="margin:0;text-align:center;left:-5%">{{currentUser.displayName}}</div>
+                        </div>
+
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a href="editProfile.html" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">פרטי משתמש</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="events.html" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">ארועים</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="material-icons">payment</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">החשבון שלי</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="memberTicketsList.html" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="material-icons">photo_camera</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">שחרור כרטיס</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="chairHunter.html" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="material-icons">remove_red_eye</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">צייד המקומות</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="material-icons">call</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">עזרה</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a ng-click="logout()" class="item-link close-panel">
+                                        <div class="item-content panel-left-item">
+                                            <div class="item-media"><i class="material-icons">exit_to_app</i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title">יציאה</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
