@@ -25,8 +25,6 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
     //memberTicketsByFilter
     //memberTicketsList
 
-
-
 })
 
 .controller("RootController", ["$scope", function ($scope) {

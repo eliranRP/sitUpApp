@@ -1,47 +1,21 @@
-//// Initialize app
-//var myApp = new Framework7();
-
-
-//// If we need to use custom DOM library, let's save it to $$ variable:
-//var $$ = Dom7;
-
-//// Add view
-//var mainView = myApp.addView('.view-main', {
-//    // Because we want to use dynamic navbar, we need to enable it for this view:
-//    dynamicNavbar: true
-//});
-
-//// Handle Cordova Device Ready Event
-//$$(document).on('deviceready', function() {
-//    console.log("Device is ready!");
-//});
-
-
-//// Now we need to run the code that will be executed only for About page.
-
-//// Option 1. Using page callback for page (for "about" page in this case) (recommended way):
-//myApp.onPageInit('about', function (page) {
-//    // Do something here for "about" page
-
-//})
-
-//// Option 2. Using one 'pageInit' event handler for all pages:
-//$$(document).on('pageInit', function (e) {
-//    // Get page data from event data
-//    var page = e.detail.page;
-
-//    if (page.name === 'about') {
-//        // Following code will be executed for page with data-page attribute equal to "about"
-//        myApp.alert('Here comes About page');
-//    }
-//})
-
-//// Option 2. Using live 'pageInit' event handlers for each page
-//$$(document).on('pageInit', '.page[data-page="about"]', function (e) {
-//    // Following code will be executed for page with data-page attribute equal to "about"
-//    myApp.alert('Here comes About page');
-//})
-
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 var app = {
     // Application Constructor
     initialize: function () {

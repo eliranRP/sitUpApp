@@ -8,6 +8,7 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
 
+
             //load data
             var eventsRef = ref.child('events'); // all events
             var events = $firebaseArray(eventsRef);
