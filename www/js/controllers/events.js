@@ -1,4 +1,4 @@
-﻿mainApp.controller("HomeController", ["$scope", "$http", '$rootScope', '$firebaseAuth','$firebaseArray',
+﻿mainApp.controller("HomeController", ["$scope", "$http", '$rootScope', '$firebaseAuth', '$firebaseArray',
 function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
     $scope.title = "ארועים";
     $scope.games = [];
@@ -8,7 +8,6 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
 
-
             //load data
             var eventsRef = ref.child('events'); // all events
             var events = $firebaseArray(eventsRef);
@@ -16,10 +15,6 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
                 console.log(data)
                 $rootScope.events = events;
             }); //make sure data is loaded
-
-
-
-
 
             $scope.redirect = function (url) {
                 mainView.router.loadPage(url)
@@ -31,5 +26,4 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
             };
         }
     });
-
 }])

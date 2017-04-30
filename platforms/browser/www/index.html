@@ -37,10 +37,11 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
     <title>Hello World</title>
     <script>
        // location.href = "test.html";
-       //location.href = "homePage.html";
+       location.href = "homePage.html";
     </script>
 </head>
 <body>
@@ -51,81 +52,5 @@
             <p class="event received">Device is Ready</p>
         </div>
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript">
-
-        var user_platform;
-        var notification_id;
-        var SENDER_ID = "506096860582";
-
-        document.addEventListener("deviceready", init, false);
-
-        function init() {
-            console.log('############device ready#############');
-
-            var push = PushNotification.init({
-                "android": {
-                    "senderID": SENDER_ID
-                },
-                "ios": {
-                    "alert": "true",
-                    "badge": "true",
-                    "sound": "true",
-                    "senderID": SENDER_ID,
-                    "gcmSandbox": true
-                },
-                "windows": {}
-            });
-
-
-            push.on('registration', function (data) {
-                notification_id = data.registrationId;
-                console.log('this is noteID:'+ notification_id);
-
-                if (IsIphone()) {
-                    user_platform = "ios";
-                }
-                else {
-                    user_platform = "android";
-                }
-                location.href = "homePage.html";
-            });
-
-            push.on('notification', function (data) {
-                console.log("notification event");
-
-                if (data.additionalData.foreground && data.additionalData.sender != localStorage.user_name) {
-
-                    addMessageToChat(data.additionalData.sender, data.message);
-                }
-                else {
-
-                }
-
-
-                push.finish(function () {
-                    console.log('finish successfully called');
-                });
-            });
-
-            push.on('error', function (e) {
-                console.log("push error");
-            });
-           
-        }
-        function IsIphone() {
-            var userAgent = navigator.userAgent;
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return true;
-            }
-            else {
-
-                return false;
-            }
-        }
-
-    </script>
-
 </body>
 </html>

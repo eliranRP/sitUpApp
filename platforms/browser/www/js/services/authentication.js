@@ -9,7 +9,6 @@
 
       var notification_id;
       var user_platform;
-      console.log('index.js');
 
       function onCordovaReady() {
           console.log('onCordovaReady')
@@ -136,6 +135,7 @@
                       var regRef = ref.child('users')
                         .child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
+                            platform: user_platform,
                             notification_id:notification_id,
                             uid: regUser.uid,
                             displayName: user.displayName,
