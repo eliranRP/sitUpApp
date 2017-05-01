@@ -3,24 +3,22 @@
 function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebaseArray, Notifications) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
-
+    var event = $rootScope.events;
     //for test reason
-    var memberSeatID = "-Kj2K0zAKy1VKSeVH48e"
-    var memberID = "-Kj2K1-4PyUj4aNl8L_3"
-    var eventID = "-Kj2K0zAKy1VKSeVH48e"
+    //var memberSeatID = "-Kj2K0zAKy1VKSeVH48e"
+    //var memberID = "-Kj2K1-4PyUj4aNl8L_3"
+    //var eventID = "-Kj2K0zAKy1VKSeVH48e"
 
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
             //var seatsRef = ref.child('unavaliableSeatsByEventID').child(event.id).child(authUser.seat);
-            var ticketsRef = ref.child('unavaliableSeatsByEventID').child(eventID).child(memberSeatID);//for test reason
-            var tickets = $firebaseObject(ticketsRef);
-            tickets.$loaded().then(function (data) {
-                $scope.tickets = tickets;
-            }); //make sure data is loaded
+            //var tickets = $firebaseObject(ticketsRef);
+            //tickets.$loaded().then(function (data) {
+            //    $scope.tickets = tickets;
+            //}); //make sure data is loaded
 
             // All user tickets by event
-            //var ticketsListRef = ref.child('unavaliableSeatsByMemberIDAndEventID').child(authUser.uid);
-            var ticketsListRef = ref.child('unavaliableSeatsByMemberIDAndEventID').child(memberID);//for test reason
+            var ticketsListRef = ref.child('unavaliableSeatsByMemberIDAndEventID').child(authUser.uid);
             var ticketsList = $firebaseArray(ticketsListRef);
             ticketsList.$loaded().then(function (data) {
                 $scope.ticketsList = ticketsList;
@@ -28,7 +26,7 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
 
 
             function send(seat) {
-                var usersList = new Array(); //holds user kitas info
+                var usersList = new Array(); 
                 var counter = 0;
                 var eventUserRef = ref.child('NotificationByEventID').child(seat.event.id);
                 eventUserRef.once("value", function (snapshot) {
@@ -36,7 +34,8 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                     snapshot.forEach(function (childSnapshot) {
                         ref.child("users").child(childSnapshot.key).once("value").then(function (snap) {
                             counter++;
-                            usersList.push(snap.val());
+                            if (snap.val())
+                                usersList.push(snap.val());
                             if (counter == numOfChild) {
                                 var data = {
                                     userList: usersList,
@@ -45,17 +44,16 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                                            + seat.seatNumber + "  שורה - " + seat.row,
                                     imageUrl: seat.imageUrl
                                 }
-                                Notifications.send(data);
+                                Notifications.send(data); // send push on $http
                             }
                         });
-
                     });
                 });
             }
 
             $scope.makeTicketAvailable = function (seat) {
 
-                var ticket = $scope.tickets;  //for test reason
+                var ticket = seat;// $scope.tickets;  //for test reason
                 if (ticket) {
                     var update = {};
                     var newTicket = {
@@ -75,11 +73,11 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                         counter: 0,
                         event: ticket.event,
                     }
-                     update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
+                    update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
 
                     // update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
-                   // update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
-                   // update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
+                    // update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
+                    // update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
 
                     return firebase.database().ref().update(update).then(function () {
                         myApp.alert('הכרטיס הועבר למכירה')

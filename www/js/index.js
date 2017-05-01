@@ -16,7 +16,7 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
 
 })
 .config(function () {
-    window.location.hash = "#!/memberTicketsList.html";
+    window.location.hash = "#!/events.html";
     //ticketsByCamera
     //events
     //ticketsByPrice
@@ -24,10 +24,12 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
     //chairHunter
     //memberTicketsByFilter
     //memberTicketsList
+    //ticketsByList
 
 })
 
 .controller("RootController", ["$scope", function ($scope) {
+
     $$('.panel-left').on('open', function () {
         $$('.statusbar-overlay').addClass('with-panel-left');
     });

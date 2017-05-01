@@ -1,5 +1,5 @@
-﻿mainApp.controller("seatsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout', '$firebaseArray',
-function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
+﻿mainApp.controller("seatsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout', '$firebaseArray', 'Purchase',
+function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
     var gate = $rootScope.currentGate;
@@ -34,6 +34,44 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
                     $('.swiper-container')[2].swiper.update()
                 });
             }); //make sure data is loaded
+
+            $scope.onPurchase = function (seat,goBack) {
+                var x = myApp.modal({
+                    title: 'רכישת ברטיס',
+                    text: 'המשך הרכישה תתבצע באתר PayPal',
+                    buttons: [
+                      {
+                          text: 'אישור',
+                          onClick: function () {
+                              Purchase.paypalPurchase();
+                              Purchase.createBarcode();
+                              Purchase.deleteTicketOnUser(seat, authUser);
+                              Purchase.setTicketOnBuyer(seat, authUser);
+                              if (goBack) {
+                                  mainView.back({
+                                      url: mainView.history[mainView.history.length - 2],
+                                      force: true,
+                                      ignoreCache: true
+                                  }) // go back
+                              }
+
+                          }
+                      },
+                      {
+                          text: 'ביטול',
+                          onClick: function () {
+                              return false;
+                          }
+                      },
+                    ],
+                })
+
+
+
+                $scope.addCount(seat.id); // viewr count
+            }
+
+
 
             // watch seat counter
             $scope.addCount = function (seatID) {
