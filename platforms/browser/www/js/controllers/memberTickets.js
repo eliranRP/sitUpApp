@@ -73,11 +73,11 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                         counter: 0,
                         event: ticket.event,
                     }
-                    update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
+                    //update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
 
-                    // update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
-                    // update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
-                    // update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
+                     update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
+                     update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
+                     update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
 
                     return firebase.database().ref().update(update).then(function () {
                         myApp.alert('הכרטיס הועבר למכירה')

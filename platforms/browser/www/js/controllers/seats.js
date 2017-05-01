@@ -71,8 +71,6 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                 $scope.addCount(seat.id); // viewr count
             }
 
-
-
             // watch seat counter
             $scope.addCount = function (seatID) {
                 var countRef = ref.child('avaliableSeatsByGateID').child(gate.id).child(seatID);

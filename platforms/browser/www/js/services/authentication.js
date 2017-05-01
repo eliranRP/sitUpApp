@@ -135,8 +135,8 @@
                       var regRef = ref.child('users')
                         .child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
-                            //platform: user_platform,
-                            //notification_id:notification_id,
+                            platform: user_platform,
+                            notification_id:notification_id,
                             uid: regUser.uid,
                             displayName: user.displayName,
                             password: user.password,
