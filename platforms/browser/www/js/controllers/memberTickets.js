@@ -77,7 +77,7 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
 
                      update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
                      update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
-                     update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
+                     update['/unavaliableSeatsByMemberIDAndEventID/' + authUser.uid + '/' + ticket.event.id] = null;
 
                     return firebase.database().ref().update(update).then(function () {
                         myApp.alert('הכרטיס הועבר למכירה')
