@@ -16,7 +16,7 @@
         <div class="list-block" style="margin:0;">
             <ul>
                 <li>
-                    <div ng-repeat="(key,seat) in ticketsList" class="card ks-card-header-pic">
+                    <div style="margin-bottom:100px;" ng-repeat="(key,seat) in ticketsList" class="card ks-card-header-pic">
                         <div style="background-image:url({{seat.event.eventImage}})" valign="top" class="card-header color-white no-border"></div>
                         <div class="card-content">
                             <div class="card-content-inner">
@@ -30,7 +30,7 @@
                                 <i class="material-icons">remove_red_eye</i>
                                 <span class="card-text-bottom">{{seat.counter}}</span>
                             </a>
-                            <a ng-click="makeTicketAvailable()" href="#" class="link">שחרר כיסא</a>
+                            <a ng-click="makeTicketAvailable(seat)" href="#" class="link">שחרר כיסא</a>
                         </div>
                     </div>
                 </li>

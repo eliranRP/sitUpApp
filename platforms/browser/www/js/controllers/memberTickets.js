@@ -1,12 +1,13 @@
-﻿mainApp.controller("memberTicketsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout', '$firebaseObject', '$firebaseArray',
-function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebaseArray) {
+﻿mainApp.controller("memberTicketsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout',
+    '$firebaseObject', '$firebaseArray', 'Notifications',
+function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebaseArray, Notifications) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
 
     //for test reason
-    var memberSeatID = "-KiEmmSz6VH4JDXZaqXo"
-    var memberID = "-KiEmmSz6VH4JDXZaqXp"
-    var eventID = "-KiEmmRu8LAjNXWFzAUY"
+    var memberSeatID = "-Kj2K0zAKy1VKSeVH48e"
+    var memberID = "-Kj2K1-4PyUj4aNl8L_3"
+    var eventID = "-Kj2K0zAKy1VKSeVH48e"
 
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
@@ -26,10 +27,34 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
             }); //make sure data is loaded
 
 
+            function send(seat) {
+                var usersList = new Array(); //holds user kitas info
+                var counter = 0;
+                var eventUserRef = ref.child('NotificationByEventID').child(seat.event.id);
+                eventUserRef.once("value", function (snapshot) {
+                    var numOfChild = snapshot.numChildren();
+                    snapshot.forEach(function (childSnapshot) {
+                        ref.child("users").child(childSnapshot.key).once("value").then(function (snap) {
+                            counter++;
+                            usersList.push(snap.val());
+                            if (counter == numOfChild) {
+                                var data = {
+                                    userList: usersList,
+                                    message: " התפנה מקום למשחק" + seat.event.homeTeam.Name + " נגד " +
+                                           seat.event.awayTeam.Name + " שער " + seat.gateNum + " מספר כיסא - "
+                                           + seat.seatNumber + "  שורה - " + seat.row,
+                                    imageUrl: seat.imageUrl
+                                }
+                                Notifications.send(data);
+                            }
+                        });
 
+                    });
+                });
+            }
 
-            $scope.makeTicketAvailable = function () {
-              
+            $scope.makeTicketAvailable = function (seat) {
+
                 var ticket = $scope.tickets;  //for test reason
                 if (ticket) {
                     var update = {};
@@ -50,11 +75,15 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                         counter: 0,
                         event: ticket.event,
                     }
-                    update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
-                    update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
-                    update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
+                     update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
+
+                    // update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
+                   // update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
+                   // update['/unavaliableSeatsByMemberIDAndEventID/' + ticket.memberID + '/' + ticket.event.id] = null;
+
                     return firebase.database().ref().update(update).then(function () {
                         myApp.alert('הכרטיס הועבר למכירה')
+                        send(seat);
                     }).catch(function (error) {
                         myApp.alert('שגיאה! נסה שוב')
                         console.log(error)
@@ -73,3 +102,5 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
         }
     });
 }]);
+
+

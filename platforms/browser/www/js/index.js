@@ -16,7 +16,7 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
 
 })
 .config(function () {
-    window.location.hash = "#!/login.html";
+    window.location.hash = "#!/memberTicketsList.html";
     //ticketsByCamera
     //events
     //ticketsByPrice

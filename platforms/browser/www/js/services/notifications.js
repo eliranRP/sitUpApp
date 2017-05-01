@@ -1,0 +1,22 @@
+﻿mainApp.factory('Notifications',
+  ['$rootScope', '$firebaseObject', '$http',
+  function ($rootScope, $firebaseObject, $http) {
+      var myObject;
+      myObject = {
+          send: function (data) {
+              var req = {
+                  method: 'POST',
+                  url: "http://proj.ruppin.ac.il/igroup81/prod/WebService.asmx/sendNotifiction",
+                  headers: {
+                      'Content-Type': "application/json; charset=utf-8"
+                  },
+                  data: JSON.stringify({ users: data.userList, msg: data.message, imageUrl: data.imageUrl })
+              }
+
+              return $http(req).then(function () { alert('success') }, function (e) { alert('error'); console.log(e) });
+          }
+      }
+      return myObject;
+  }]); //factory
+
+

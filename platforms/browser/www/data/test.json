@@ -1,0 +1,30 @@
+﻿{
+  {
+    "users": [
+        {
+          "date": "65346543",
+          "platform": "android",
+          "notification_id": "cBzU2oalVqQ:APA91bFIBhq0jg6GBNfZKhf4vkSsiLqvwXjJRwyvE38Otapql94_YxzUjUD9pVx2rer86dYVcjnIBBXULBPhshYeq-mnmi2_6TiNJUdD95sV42P5dWmilQdVBiDnX_gjYHnurnqfIeSy",
+          "uid": "gfdsgds",
+          "displayName": "eliran",
+          "password": "4444",
+          "photoURL": "https://firebasestorage.googleapis.com/v0/b/situp-50a6b.appspot.com/o/profileImageDef%2FdefProfile.png?alt=media&token=b77ce80d-d54c-4edf-8b72-20d110ce8e08",
+          "email": "543255423dsadsa@.com",
+          "tel": "542354354235"
+        },
+        {
+          "date": "65346543",
+          "platform": "android",
+          "notification_id": "erT3i7tjQmg:APA91bHUu2AoF4NnyGbEua1tnSsGrfrmyTxzleVXjQys0VCfLk6aJHW3P338Dmcsuxasb1wfGQYdGfri3ASdqUQcY9tu5WTsBjvvX6-Mtc2UD78vmwe5OCYKj3gwYTpQH7d0LOPA2mRn",
+          "uid": "gfdsgds",
+          "displayName": "ima",
+          "password": "4444",
+          "photoURL": "https://firebasestorage.googleapis.com/v0/b/situp-50a6b.appspot.com/o/profileImageDef%2FdefProfile.png?alt=media&token=b77ce80d-d54c-4edf-8b72-20d110ce8e08",
+          "email": "543255423dsadsa@.com",
+          "tel": "542354354235"
+        }
+    ],
+    "msg": "שלןם התפנה מקום",
+    "imageUrl": "img/stadium/stad1.jpg"
+  }
+}

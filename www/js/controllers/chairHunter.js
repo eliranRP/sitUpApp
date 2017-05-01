@@ -8,6 +8,7 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
             //load data
             var eventsNotificationRef = ref.child('NotificationByUserID').child(authUser.uid); // all events
             var eventsNotification = $firebaseArray(eventsNotificationRef);
+
             eventsNotification.$loaded().then(function (data) {
                 $scope.eventsNotification = eventsNotification;
                 data.forEach(function (snap) {

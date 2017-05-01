@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="cordova.js"></script>
     <link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <script src="js/jquery.min.js"></script>
     <style>
         input {
             text-align: right !important;
@@ -53,7 +53,7 @@
 
         <input type="text" placeholder="הכנס שם משתמש" id="user_name" />
 
-        <a class="ui-btn" onclick="register()">שלח</a>
+        <a class="ui-btn" onclick="sendMsg()">שלח</a>
     </div>
 
 
@@ -82,5 +82,32 @@
         </footer>
     </div>
 
+
+    <script>
+
+
+        function sendMsg() {
+
+
+
+            $.ajax({
+
+                type: "POST",
+                url: "http://proj.ruppin.ac.il/igroup81/prod/WebService.asmx/sendMsg",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ platform: 'android', not_id: '543', msg:'gfd' ,user : 'ttt'}),
+                dataType: "json",
+                success: function (data) {
+                    alert('success')
+                    
+                },
+                error: function (err) {
+                    x = 2;
+                }
+
+            })
+
+        };
+    </script>
 </body>
 </html>
