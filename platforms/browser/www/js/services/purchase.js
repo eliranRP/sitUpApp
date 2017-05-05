@@ -34,7 +34,7 @@
                   update['/unavaliableSeatsByMemberIDAndEventID/' + currentUser.uid + '/' + seat.event.id] = newTicket;
 
                   return firebase.database().ref().update(update).then(function () {
-                      sendNotificationToSeller(seat); // send notification to seller
+                      myObject.sendNotificationToSeller(seat); // send notification to seller
                   }).catch(function (error) {
                       console.log(error)
                   }); //update
@@ -53,13 +53,16 @@
               }
           },
           sendNotificationToSeller: function (seat) {
-              var data = {
-                  userList: usersList,
-                  message: " הכרטיס למשחק" + seat.event.homeTeam.Name + " נגד " +
-                         seat.event.awayTeam.Name + "נמכר ",
-                  imageUrl: seat.event.eventImage
-              }
-              Notifications.send(data); // send push on $http
+              var userRef = firebase.database().ref().child('users').child(seat.lastBuyer);
+              userRef.once('value').then(function(snapshot) {
+                  var data = {
+                      userList: snapshot.val(),
+                      message: " הכרטיס למשחק" + seat.event.homeTeam.Name + " נגד " +
+                             seat.event.awayTeam.Name + "נמכר ",
+                      imageUrl: seat.event.eventImage
+                  }
+                  Notifications.send(data); // send push on $http
+              });
           }
       }
       return myObject;
