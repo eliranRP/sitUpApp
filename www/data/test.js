@@ -91,7 +91,7 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
             for (k = 1, m = 1; k < 2; k++, m++) {
                 var seatID = ref.child('avaliableSeatsByGateID').child(gateInEventID).push().key;
                 var membersID = ref.child('members').push().key;
-                var barcode = Math.round((Math.random()) * 9999999);
+                var barcode ='http://www.simonblog.com/wordpress/wp-content/uploads/2008/11/qrcode_simonblog.png';
                 var amount = Math.floor(Math.random() * 200) + 100;
                 var rand = Math.floor(Math.random() * 10) + 1;
                 var avaliable;

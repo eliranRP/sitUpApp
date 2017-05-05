@@ -142,7 +142,13 @@ a.item-link {
 
 .onSlae{
     color:white;
-    font-size:3.5rem;
+    font-size:1.2rem;
     margin:auto;
     top:50%;
+}
+.ticketImage{
+    max-height:100px;
+    max-width:100px;
+    /*padding:20px;*/
+    float:left;
 }

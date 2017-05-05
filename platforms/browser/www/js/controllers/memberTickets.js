@@ -45,11 +45,27 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
             $scope.makeTicketAvailable = function (ticket) {
                 Tickets.releaseTicket(ticket, authUser.uid);
                 send(ticket);
-            }
+            }// makeTicketAvailable
 
             $scope.pullTicketBack = function (ticket) {
                 Tickets.pullTicketBack(ticket, authUser.uid);
-            }
+            }// pullTicketBack
+
+            $scope.showBarcode = function (ticket) {
+                var photoBrowserPhotos = [{
+                    url: ticket.barcode,
+                    caption: ticket.event.location
+                }];
+                var photoBrowserStandalone = myApp.photoBrowser({
+                    photos: photoBrowserPhotos
+                });
+                var photoBrowserPopupDark = myApp.photoBrowser({
+                    photos: photoBrowserPhotos,
+                    theme: 'dark',
+                    type: 'popup'
+                });
+                photoBrowserPopupDark.open();
+            };// showBarcode
 
             $scope.redirect = function (url) {
                 mainView.router.loadPage(url)
@@ -59,6 +75,8 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                 $rootScope.currentSeat = seat;
                 mainView.router.loadPage(url);
             };
+
+
         }
     });
 }]);

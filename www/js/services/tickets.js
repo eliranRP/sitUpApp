@@ -31,7 +31,6 @@
               update['/unavaliableSeatsByMemberIDAndEventID/' + userID + '/' + ticket.event.id + '/' + 'onSale'] = false;
 
               return firebase.database().ref().update(update).then(function () {
-                  myApp.alert('')
               }).catch(function (error) {
                   myApp.alert('שגיאה! נסה שוב')
                   console.log(error)
@@ -64,7 +63,7 @@
                   update['/unavaliableSeatsByMemberIDAndEventID/' + userID + '/' + ticket.event.id + '/' + 'onSale'] = true;
 
                   return firebase.database().ref().update(update).then(function () {
-                      myApp.alert('הכרטיס הועבר למכירה')
+                      myApp.alert('הכרטיס הועבר למכירה, עד ביצוע המכירה תוכל לצפות בכרטיס בדף - הכרטיסים שלי')
                   }).catch(function (error) {
                       myApp.alert('שגיאה! נסה שוב')
                       console.log(error)
