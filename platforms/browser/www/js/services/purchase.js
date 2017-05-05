@@ -54,9 +54,10 @@
           },
           sendNotificationToSeller: function (seat) {
               var userRef = firebase.database().ref().child('users').child(seat.lastBuyer);
-              userRef.once('value').then(function(snapshot) {
+              userRef.once('value').then(function (snapshot) {
+                  var usersList = new Array();
                   var data = {
-                      userList: snapshot.val(),
+                      userList: usersList.push(snapshot.val()),
                       message: " הכרטיס למשחק" + seat.event.homeTeam.Name + " נגד " +
                              seat.event.awayTeam.Name + "נמכר ",
                       imageUrl: seat.event.eventImage
