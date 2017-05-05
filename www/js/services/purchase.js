@@ -17,8 +17,10 @@
                       id: seat.id,
                       memberID: seat.memberID,
                       buyerID: currentUser.uid, // buyer id --> currentUser uid
+                      lastBuyer: currentUser.uid,
+                      onSale: false,
                       gateID: seat.gateID,
-                      avaliable: true,
+                      avaliable: false,
                       row: seat.row,
                       gateNum: seat.gateNum,
                       seatNumber: seat.seatNumber,
@@ -42,6 +44,8 @@
               if (seat) {
                   var update = {};
                   update['/avaliableSeatsByGateID/' + seat.gateID + '/' + seat.id] = null; // move ticket to available list
+                  update['/unavaliableSeatsByMemberIDAndEventID/' + seat.lastBuyer + '/' + seat.event.id] = null;
+
                   return firebase.database().ref().update(update).then(function () {
                   }).catch(function (error) {
                       console.log(error)

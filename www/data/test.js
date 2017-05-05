@@ -70,14 +70,14 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
         }
         ]
     }
-    for (var j = 0; j < 3; j++) {
+    for (var j = 0; j < 1; j++) {
         var eventID = ref.child('events').push().key;
         var event = events.gameentry[j];
         event.id = eventID;
         ref.child('events').child(eventID).set(event); //userinfo
 
         // gate
-        for (var i = 1; i < 6; i++) {
+        for (var i = 1; i < 2; i++) {
             var gateInEventID = ref.child('gatesByEventsID').push().key;
             ref.child('gatesByEventsID').child(eventID).child(gateInEventID).set({
                 date: firebase.database.ServerValue.TIMESTAMP,
@@ -88,7 +88,7 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
                 minPrice: Math.floor(Math.random() * 10 * i * 2) + 100,
             });
             //seats
-            for (k = 1, m = 1; k < 50; k++, m++) {
+            for (k = 1, m = 1; k < 2; k++, m++) {
                 var seatID = ref.child('avaliableSeatsByGateID').child(gateInEventID).push().key;
                 var membersID = ref.child('members').push().key;
                 var barcode = Math.round((Math.random()) * 9999999);
@@ -101,13 +101,16 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
                     avaliable = false;
                 if (m > 11) m = 1;
 
+
                 var seat = {
                     date: firebase.database.ServerValue.TIMESTAMP,
                     id: seatID,
                     memberID: membersID,
-                    buyerID:'',
+                    buyerID: '',
+                    lastBuyer: membersID,
+                    onSale: true,
                     gateID: gateInEventID,
-                    avaliable: avaliable,
+                    avaliable: true,
                     row: Math.floor(Math.random() * 10) + 1,
                     gateNum: i,
                     seatNumber: k,

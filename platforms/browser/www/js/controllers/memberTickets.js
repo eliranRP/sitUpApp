@@ -1,21 +1,12 @@
 ﻿mainApp.controller("memberTicketsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout',
-    '$firebaseObject', '$firebaseArray', 'Notifications',
-function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebaseArray, Notifications) {
+    '$firebaseObject', '$firebaseArray', 'Notifications','Tickets',
+function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebaseArray, Notifications, Tickets) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
     var event = $rootScope.events;
-    //for test reason
-    //var memberSeatID = "-Kj2K0zAKy1VKSeVH48e"
-    //var memberID = "-Kj2K1-4PyUj4aNl8L_3"
-    //var eventID = "-Kj2K0zAKy1VKSeVH48e"
 
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
-            //var seatsRef = ref.child('unavaliableSeatsByEventID').child(event.id).child(authUser.seat);
-            //var tickets = $firebaseObject(ticketsRef);
-            //tickets.$loaded().then(function (data) {
-            //    $scope.tickets = tickets;
-            //}); //make sure data is loaded
 
             // All user tickets by event
             var ticketsListRef = ref.child('unavaliableSeatsByMemberIDAndEventID').child(authUser.uid);
@@ -51,42 +42,13 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                 });
             }
 
-            $scope.makeTicketAvailable = function (seat) {
+            $scope.makeTicketAvailable = function (ticket) {
+                Tickets.releaseTicket(ticket, authUser.uid);
+                send(ticket);
+            }
 
-                var ticket = seat;// $scope.tickets;  //for test reason
-                if (ticket) {
-                    var update = {};
-                    var newTicket = {
-                        date: ticket.date,
-                        id: ticket.id,
-                        memberID: ticket.memberID,
-                        buyerID: '',
-                        gateID: ticket.gateID,
-                        avaliable: true,
-                        row: ticket.row,
-                        gateNum: ticket.gateNum,
-                        seatNumber: ticket.seatNumber,
-                        barcode: ticket.barcode,
-                        currency: "שח",
-                        amount: ticket.amount,
-                        imageUrl: ticket.imageUrl,
-                        counter: 0,
-                        event: ticket.event,
-                    }
-                    //update['/test/' + ticket.gateID + '/' + ticket.id] = true; // move ticket to available list
-
-                     update['/avaliableSeatsByGateID/' + ticket.gateID + '/' + ticket.id] = newTicket; // move ticket to available list
-                     update['/unavaliableSeatsByEventID/' + ticket.event.id + '/' + ticket.id] = null;
-                     update['/unavaliableSeatsByMemberIDAndEventID/' + authUser.uid + '/' + ticket.event.id] = null;
-
-                    return firebase.database().ref().update(update).then(function () {
-                        myApp.alert('הכרטיס הועבר למכירה')
-                        send(seat);
-                    }).catch(function (error) {
-                        myApp.alert('שגיאה! נסה שוב')
-                        console.log(error)
-                    }); //update
-                }
+            $scope.pullTicketBack = function (ticket) {
+                Tickets.pullTicketBack(ticket, authUser.uid);
             }
 
             $scope.redirect = function (url) {

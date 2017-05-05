@@ -17,7 +17,10 @@
             <ul>
                 <li>
                     <div style="margin-bottom:100px;" ng-repeat="(key,seat) in ticketsList" class="card ks-card-header-pic">
-                        <div style="background-image:url({{seat.event.eventImage}})" valign="top" class="card-header color-white no-border"></div>
+                        <div ng-if="seat.onSale==false" style="background-image:url({{seat.event.eventImage}})" valign="top" class="card-header color-white no-border"></div>
+                        <div ng-if="seat.onSale" style="background-color:rgba(0, 0, 0, 0.74);" valign="top" class="card-header color-white no-border">
+                            <p class="onSlae">הכרטיס הועבר למכירה </p>
+                        </div>
                         <div class="card-content">
                             <div class="card-content-inner">
                                 <p class="color-gray" style="margin-bottom:0;">{{seat.event.homeTeam.City +seat.event.homeTeam.Name}} vs. {{seat.event.awayTeam.City + seat.event.awayTeam.Name}}</p>
@@ -30,7 +33,8 @@
                                 <i class="material-icons">remove_red_eye</i>
                                 <span class="card-text-bottom">{{seat.counter}}</span>
                             </a>
-                            <a ng-click="makeTicketAvailable(seat)" href="#" class="link">שחרר כיסא</a>
+                            <a ng-if="seat.onSale==false" ng-click="makeTicketAvailable(seat)" href="#" class="link">שחרר כיסא</a>
+                            <a ng-if="seat.onSale" ng-click="pullTicketBack(seat)" href="#" class="link">משוך כיסא</a>
                         </div>
                     </div>
                 </li>

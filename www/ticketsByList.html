@@ -26,7 +26,7 @@
                                 <i class="material-icons">remove_red_eye</i>
                                 <span class="card-text-bottom">{{seat.counter}}</span>
                             </a>
-                            <a ng-click="onPurchase(seat,false)" href="#" class="link">רכישה</a>
+                            <a ng-if="hasTicket==null" ng-click="onPurchase(seat,false)" href="#" class="link">רכישה</a>
                         </div>
                     </div>
                 </li>

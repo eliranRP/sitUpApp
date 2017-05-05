@@ -36,7 +36,7 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
             }); //make sure data is loaded
 
             $scope.onPurchase = function (seat,goBack) {
-                var x = myApp.modal({
+                myApp.modal({
                     title: 'רכישת ברטיס',
                     text: 'המשך הרכישה תתבצע באתר PayPal',
                     buttons: [
@@ -65,9 +65,6 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                       },
                     ],
                 })
-
-
-
                 $scope.addCount(seat.id); // viewr count
             }
 

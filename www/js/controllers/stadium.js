@@ -4,11 +4,19 @@
 
         var ref = firebase.database().ref();
         var auth = $firebaseAuth();
-        $scope.event = $rootScope.currentEvent;
+        var event = $rootScope.currentEvent;
+
 
         auth.$onAuthStateChanged(function (authUser) {
             if (authUser) {
-                var gatesRef = ref.child('gatesByEventsID').child($scope.event.id); // gate by eventsID
+                var gatesRef = ref.child('gatesByEventsID').child(event.id); // gate by eventsID
+                var ticketsRef = ref.child('unavaliableSeatsByMemberIDAndEventID').child(authUser.uid).child(event.id);
+                ticketsRef.once('value').then(function (snapshot) {
+                    $rootScope.hasTicket = snapshot.val();
+                })
+              .catch(function () {
+                  $rootScope.hasTicket = snapshot.val();
+              })
                 var gates = $firebaseArray(gatesRef);
                 gates.$loaded().then(function (data) {
                     $scope.gates = gates;
@@ -21,7 +29,7 @@
 
                 var photoBrowserPhotos = [{
                     url: 'img/stadium.gif',
-                    caption: $scope.event.location
+                    caption: event.location
                 }
                 ];
                 var photoBrowserStandalone = myApp.photoBrowser({

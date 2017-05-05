@@ -13,7 +13,7 @@
                   data: JSON.stringify({ users: data.userList, msg: data.message, imageUrl: data.imageUrl })
               }
 
-              return $http(req).then(function () { alert('success') }, function (e) { alert('error'); console.log(e) });
+              return $http(req).then(function () { console.log('success') }, function (e) { console.log('error'); console.log(e) });
           }
       }
       return myObject;

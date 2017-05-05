@@ -139,3 +139,10 @@ a.item-link {
 .list-block .item-after {
     margin-left: 8px !important;
 }
+
+.onSlae{
+    color:white;
+    font-size:3.5rem;
+    margin:auto;
+    top:50%;
+}
