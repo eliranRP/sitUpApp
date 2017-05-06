@@ -3,6 +3,8 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
 
+    myApp.showPreloader(); // set loader
+
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
             //load data
@@ -57,4 +59,6 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
             mainView.router.loadPage("login.html");
         }
     });
+
+    myApp.hidePreloader();
 }]);

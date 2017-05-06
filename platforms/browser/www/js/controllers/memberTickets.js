@@ -67,6 +67,10 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
                 photoBrowserPopupDark.open();
             };// showBarcode
 
+            $scope.addreview = function (ticket) {
+                Tickets.addreview(ticket,authUser,$scope.currentReview)
+            }
+
             $scope.redirect = function (url) {
                 mainView.router.loadPage(url)
             }

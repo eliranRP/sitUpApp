@@ -3,16 +3,15 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     console.log('deviceready111');
     try{
-        var res = window.plugins.sim.getSimInfo();
-        alert(res)
+        hasReadPermission();
     }
-    catch(ex){
-        alert(ex.message);
+    catch(e)
+    {
+        console.log('error:  ' + e.message)
+    }
+    //  window.plugins.sim.getSimInfo(successCallback, errorCallback);
 }
 
-    console.log(res);
-    window.plugins.sim.getSimInfo(successCallback, errorCallback);
-}
 
 function successCallback(result) {
     console.log('successCallback');

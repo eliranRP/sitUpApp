@@ -1,7 +1,7 @@
 ﻿mainApp.controller('RegistrationController',
-  ['$scope', 'Authentication',
-  function ($scope, Authentication) {
-
+  ['$scope', 'Authentication','$rootScope',
+  function ($scope, Authentication, $rootScope) {
+      $rootScope.isPostBack = false;
       $scope.login = function () {
           Authentication.login($scope.user);
           console.log('Im login from registration')

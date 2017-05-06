@@ -7,11 +7,17 @@
         </div>
     </div>
     <div class="page-content">
+
         <div class="content-block-title">פרטים אישיים</div>
         <form id="demoform-1" class="store-data list-block">
             <div style="text-align:center;margin:2rem;padding:1rem;">
-                <img class="avatar" ng-src="{{currentUser.photoURL}}" />
-                <input type="file" id="imageUp" onchange="angular.element(this).scope().imageUpload(this)" accept="image/*"/>
+                <!-- Blue -->
+                <div ng-show="isLoad" class="col-25">
+                    <span class="preloader preloader-blue"></span>
+                </div>
+                <img ng-hide="isLoad" class="avatar takePhoto" ng-src="{{currentUser.photoURL}}" />
+                <input type="file" id="imageUp" onchange="angular.element(this).scope().imageUpload(this)" accept="image/*" />
+                <!--<input type="text" id="imageUp"  accept="image/*"/>-->
             </div>
             <p ng-show="imageMsg" class="error validationerrore">
                 {{imageMsg}}
@@ -59,7 +65,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">טלפון</div>
                                 <div class="item-input">
-                                    <input  ng-model="currentUser.tel" type="tel" placeholder="" />
+                                    <input  ng-model="currentUser.tel" type="number" placeholder="" />
                                 </div>
                             </div>
                         </div>
@@ -68,7 +74,7 @@
             </div>
             <div class="content-block">
                 <p class="buttons-row">
-                    <a href="#" class="button button-raised">שמור</a>
+                    <div style="text-align:center;" class="content-block-title">הפרטים מתעדכנים אוטומטית</div>
                 </p>
             </div>
         </form>

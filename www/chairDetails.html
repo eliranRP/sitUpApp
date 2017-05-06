@@ -1,4 +1,4 @@
-﻿<div data-page="home" class="page with-subnavbar" ng-controller="seatsController"> 
+﻿<div data-page="home" class="page with-subnavbar" ng-controller="seatsController">
     <div class="navbar">
         <div class="navbar-inner">
             <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
@@ -18,17 +18,17 @@
                 <!-- Buttons row as tabs controller in Subnavbar-->
                 <div class="buttons-row">
                     <!-- Link to 1st tab, active -->
-                    <a href="#tab11" class="button active tab-link">פרטים</a>
+                    <a   href="#tab11" class="button active tab-link">פרטים</a>
                     <!-- Link to 2nd tab -->
-                    <a href="#tab22" class="button tab-link">חוות דעת</a>
+                    <a   href="#tab22" class="button tab-link">חוות דעת</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="toolbar tabbar">
         <div class="toolbar-inner">
-            <a href="#tab11" class="active tab-link">פרטים</a>
-            <a href="#tab22" class="tab-link">חוות דעת</a>
+            <a ng-click="reviewFlag=false" href="#tab11" class="active tab-link">פרטים</a>
+            <a ng-click="reviewFlag=true" href="#tab22" class="tab-link">חוות דעת</a>
         </div>
     </div>
     <!-- Tabs swipeable wrapper, required to switch tabs with swipes -->
@@ -36,7 +36,7 @@
         <!-- Tabs, tabs wrapper -->
         <div class="tabs">
             <!-- NASA, active by default -->
-            <div id="tab11" class="page-content tab active">
+            <div id="tab11" ng-init="reviewFlag=false" class="page-content tab active">
                 <div class="content-block-title"></div>
                 <div class="card ks-card-header-pic">
                     <div style="background-image:url({{currentSeat.imageUrl}})" valign="top" class="card-header color-white no-border">{{currentSeat.amount}} ש"ח</div>
@@ -62,111 +62,17 @@
                     <div class="content-block-title">חוות דעת</div>
                     <div class="list-block media-list">
                         <ul>
-                            <li>
+                            <li ng-repeat="(key,rev) in reviewsList">
                                 <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80" /></div>
+                                    <div class="item-media"><img ng-src="{{rev.userPost.photoURL}}" width="80" /></div>
                                     <div class="item-inner">
                                         <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול תל-אביב</div>
-                                            <div class="item-after">17/5/17  21:34</div>
+                                            <div class="item-title">
+                                                {{rev.ticket.event.homeTeam.Name}} vs. {{rev.ticket.event.awayTeam.Name}}
+                                            </div>
+                                            <div class="item-after">{{ rev.date |  date :  "MMM d, y h:mm:ss a"  }}</div>
                                         </div>
-                                        <div class="item-text">הייתה אווירה טובה ישבנו קרוב למגרש, ממש כמו שרואים בתמונות. מומלץ!!!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/2" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול ירושלים</div>
-                                            <div class="item-after">12/1/17  23:31</div>
-                                        </div>
-                                        <div class="item-text">ישבנו קרוב מאוד למגרש, פחות אהבנו. אנחנו פעם הבאה נעדיך לשבת ביציע רחוק יותר. אבל בכל זאת נהננו מהמשחק!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד גליל עליון</div>
-                                            <div class="item-after">1/4/16  23:12</div>
-                                        </div>
-                                        <div class="item-text">מי שאוהב לשבת קרוב מומלץ מאוד, קצת מבאס שזה מאחורי הסל אבל וישבים ממש קרוב אז זה מפצה...</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול תל-אביב</div>
-                                            <div class="item-after">17/5/17  21:34</div>
-                                        </div>
-                                        <div class="item-text">הייתה אווירה טובה ישבנו קרוב למגרש, ממש כמו שרואים בתמונות. מומלץ!!!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/2" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול ירושלים</div>
-                                            <div class="item-after">12/1/17  23:31</div>
-                                        </div>
-                                        <div class="item-text">ישבנו קרוב מאוד למגרש, פחות אהבנו. אנחנו פעם הבאה נעדיך לשבת ביציע רחוק יותר. אבל בכל זאת נהננו מהמשחק!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד גליל עליון</div>
-                                            <div class="item-after">1/4/16  23:12</div>
-                                        </div>
-                                        <div class="item-text">מי שאוהב לשבת קרוב מומלץ מאוד, קצת מבאס שזה מאחורי הסל אבל וישבים ממש קרוב אז זה מפצה...</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול תל-אביב</div>
-                                            <div class="item-after">17/5/17  21:34</div>
-                                        </div>
-                                        <div class="item-text">הייתה אווירה טובה ישבנו קרוב למגרש, ממש כמו שרואים בתמונות. מומלץ!!!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/2" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד הפעול ירושלים</div>
-                                            <div class="item-after">12/1/17  23:31</div>
-                                        </div>
-                                        <div class="item-text">ישבנו קרוב מאוד למגרש, פחות אהבנו. אנחנו פעם הבאה נעדיך לשבת ביציע רחוק יותר. אבל בכל זאת נהננו מהמשחק!</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="item-link item-content">
-                                    <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80" /></div>
-                                    <div class="item-inner">
-                                        <div class="item-title-row">
-                                            <div class="item-title">מכבי תל-אביב נגד גליל עליון</div>
-                                            <div class="item-after">1/4/16  23:12</div>
-                                        </div>
-                                        <div class="item-text">מי שאוהב לשבת קרוב מומלץ מאוד, קצת מבאס שזה מאחורי הסל אבל וישבים ממש קרוב אז זה מפצה...</div>
+                                        <div class="item-text">{{rev.review}}</div>
                                     </div>
                                 </a>
                             </li>
@@ -176,7 +82,9 @@
             </div>
         </div>
     </div>
+    <a ng-click="popUpReview" ng-show="reviewFlag==true"  class="floating-button floating-button-to-popover color-purple demo-actions"><i class="icon icon-plus"></i></a>
 </div>
+
 
 
 

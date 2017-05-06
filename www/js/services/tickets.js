@@ -74,7 +74,50 @@
                       console.log(error)
                   }); //update
               }
+          },
+          addReview: function (ticket, curUser, review) {
+              var newReviewKey = firebase.database().ref().child('reviewsBySeatID').child(ticket.id).push().key; // create key 
+              var update = {};
+              var newTicket = {
+                  date: ticket.date,
+                  id: ticket.id,
+                  memberID: ticket.memberID,
+                  lastBuyer: ticket.lastBuyer,
+                  onSale: ticket.onSale,
+                  buyerID: ticket.buyerID,
+                  gateID: ticket.gateID,
+                  avaliable: ticket.avaliable,
+                  row: ticket.row,
+                  gateNum: ticket.gateNum,
+                  seatNumber: ticket.seatNumber,
+                  barcode: ticket.barcode,
+                  currency: "שח",
+                  amount: ticket.amount,
+                  imageUrl: ticket.imageUrl,
+                  counter: ticket.counter,
+                  event: ticket.event,
+              }
+              var user = {
+                  uid: curUser.uid,
+                  photoURL: curUser.photoURL
+              }
+              var newReview = {
+                  date: firebase.database.ServerValue.TIMESTAMP,
+                  ticket: newTicket,
+                  userPost: user,
+                  review: review
+              };
+              update['/reviewsBySeatID/' + ticket.id + '/' + newReviewKey] = newReview;
+              return firebase.database().ref().update(update).then(function () {
+                  var msg = 'התגובה נוספה'
+                  Notifications.addNotification(msg)
+              }).catch(function (error) {
+                  var msg = 'שגיאה! נסה שוב'
+                  Notifications.addNotification(msg)
+                  console.log(error)
+              }); //update
           }
+      
       }
       return myObject;
   }]); //factory

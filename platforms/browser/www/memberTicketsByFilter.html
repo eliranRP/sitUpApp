@@ -12,9 +12,9 @@
         <div class="list-block">
             <ul>
                 <li>
-                    <a href="#" class="item-link smart-select" data-open-in="picker"  data-searchbar="true" data-searchbar-placeholder="חפש">
+                    <a href="#" class="item-link smart-select" data-open-in="picker" data-searchbar="true" data-searchbar-placeholder="חפש">
                         <select ng-model="filterSeat" name="fruits">
-                            <option value="" selected="selected" >בחר</option>
+                            <option value="" selected="selected">בחר</option>
                             <option ng-repeat="(key,event) in ticketsList" value="{{key}}">{{event.event.awayTeam.Name + '  ' + event.event.date + ' ' + event.event.time}}</option>
                         </select>
                         <div class="item-content">
@@ -24,7 +24,7 @@
                         </div>
                     </a>
                 </li>
-              
+
             </ul>
             <p>{{data.singleSelect}}</p>
         </div>
@@ -32,7 +32,10 @@
             <ul>
                 <li>
                     <div class="card ks-card-header-pic" style="margin-bottom:5rem;">
-                        <div style="background-image:url({{ticketsList[filterSeat].event.eventImage}})" valign="top" class="card-header color-white no-border"></div>
+                        <div ng-if="ticketsList[filterSeat].onSale==false" style="background-image:url({{ticketsList[filterSeat].event.eventImage}})" valign="top" class="card-header color-white no-border"></div>
+                        <div ng-if="ticketsList[filterSeat].onSale" style="background-color:rgba(0, 0, 0, 0.74);" valign="top" class="card-header color-white no-border">
+                            <p class="onSlae">הכרטיס הועבר למכירה </p>
+                        </div>
                         <div class="card-content">
                             <div class="card-content-inner">
                                 <p class="color-gray" style="margin-bottom:0;">{{ticketsList[filterSeat].event.homeTeam.City +ticketsList[filterSeat].event.homeTeam.Name}} vs. {{ticketsList[filterSeat].event.awayTeam.City + ticketsList[filterSeat].event.homeTeam.awayTeam.Name}}</p>
@@ -45,7 +48,8 @@
                                 <i class="material-icons">remove_red_eye</i>
                                 <span class="card-text-bottom">{{filterSeat.counter}}</span>
                             </a>
-                            <a ng-click="makeTicketAvailable(ticketsList[filterSeat])" href="#" class="link">שחרר כיסא</a>
+                            <a ng-if="ticketsList[filterSeat].onSale==false" ng-click="makeTicketAvailable(ticketsList[filterSeat])" href="#" class="link">שחרר כיסא</a>
+                            <a ng-if="ticketsList[filterSeat].onSale" ng-click="pullTicketBack(ticketsList[filterSeat])" href="#" class="link">משוך כיסא</a>
                         </div>
                     </div>
                 </li>

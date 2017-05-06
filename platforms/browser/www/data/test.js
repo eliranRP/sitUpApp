@@ -70,14 +70,14 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
         }
         ]
     }
-    for (var j = 0; j < 1; j++) {
+    for (var j = 0; j < 3; j++) {
         var eventID = ref.child('events').push().key;
         var event = events.gameentry[j];
         event.id = eventID;
         ref.child('events').child(eventID).set(event); //userinfo
 
         // gate
-        for (var i = 1; i < 2; i++) {
+        for (var i = 1; i < 6; i++) {
             var gateInEventID = ref.child('gatesByEventsID').push().key;
             ref.child('gatesByEventsID').child(eventID).child(gateInEventID).set({
                 date: firebase.database.ServerValue.TIMESTAMP,
@@ -85,10 +85,10 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
                 currency: "שח",
                 number: i,
                 maxPrice: Math.floor(Math.random() * 100) + ((i + 1) * 100),
-                minPrice: Math.floor(Math.random() * 10 * i * 2) + 100,
+                minPrice: Math.floor(Math.random() * 10 * i * 2) + 500,
             });
             //seats
-            for (k = 1, m = 1; k < 2; k++, m++) {
+            for (k = 1, m = 1; k < 5; k++, m++) {
                 var seatID = ref.child('avaliableSeatsByGateID').child(gateInEventID).push().key;
                 var membersID = ref.child('members').push().key;
                 var barcode ='http://www.simonblog.com/wordpress/wp-content/uploads/2008/11/qrcode_simonblog.png';

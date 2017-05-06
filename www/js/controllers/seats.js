@@ -1,9 +1,34 @@
-﻿mainApp.controller("seatsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout', '$firebaseArray', 'Purchase',
-function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase) {
+﻿mainApp.controller("seatsController", ['$scope', '$rootScope', '$firebaseAuth', '$timeout', '$firebaseArray', 'Purchase','Tickets',
+function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase, Tickets) {
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
     var gate = $rootScope.currentGate;
     var event = $rootScope.currentEvent;
+
+    function addReview() {
+        $scope.$apply(function () {
+            $scope.review = $$('#myReview').val()
+        });
+        $scope.addReview();
+    }
+
+    var actionSheetButtons = [
+{
+    text:
+        '<div class="toolbar messagebar">' +
+            '<div class="toolbar-inner"><a id="addReview" onclick="addReview()" class="link icon-only"><i class="material-icons">send</i></a>' +
+            '<textarea id="myReview" ng-model="review" class="resizable" placeholder="הוסף ביקורת..."></textarea></div></div>',
+    label: true
+}
+
+    ];
+    $$('.demo-actions').on('click', function (e) {
+        myApp.actions(actionSheetButtons);
+        $$('.actions-modal-label').addClass('blue');
+
+        var button = document.getElementById('addReview');
+        button.addEventListener('click', addReview);
+    });
 
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
@@ -35,6 +60,15 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                 });
             }); //make sure data is loaded
 
+            if ($rootScope.currentSeat) {
+                var reviewsRef = ref.child('reviewsBySeatID').child($rootScope.currentSeat.id);
+                var reviews = $firebaseArray(reviewsRef);
+                reviews.$loaded().then(function (data) {
+                    $scope.reviewsList = reviews;
+                }); //make sure data is loaded
+            }
+
+
             $scope.onPurchase = function (seat, goBack) {
                 myApp.modal({
                     title: 'רכישת ברטיס',
@@ -54,7 +88,6 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                                       ignoreCache: true
                                   }) // go back
                               }
-
                           }
                       },
                       {
@@ -90,9 +123,16 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                 mainView.router.loadPage(url);
             };
 
+            $scope.addReview = function () {
+                Tickets.addReview($rootScope.currentSeat, $rootScope.currentUser, $$('#myReview').val());
+                $$('#myReview').val('');
+            }
+
             $('#tab111').on('show', function () {
                 $(this).find('.swiper-container')[0].swiper.update()
             });
+
+
         }
         else {
             $rootScope.currentUser = '';

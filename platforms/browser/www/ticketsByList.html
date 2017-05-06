@@ -10,9 +10,9 @@
         <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
         <div class="list-block">
             <div class="content-block-title"></div>
-            <ul>
-                <li>
-                    <div ng-repeat="(key,seat) in seats" class="card ks-card-header-pic">
+            <ul class="ticket-cards">
+                <li  ng-repeat="(key,seat) in seats">
+                    <div  class="card ks-card-header-pic">
                         <div style="background-image:url({{seat.imageUrl}})" valign="top" class="card-header color-white no-border">{{seat.amount}} ש"ח</div>
                         <div class="card-content">
                             <div class="card-content-inner">

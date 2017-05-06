@@ -6,7 +6,6 @@
         var auth = $firebaseAuth();
         var event = $rootScope.currentEvent;
 
-
         auth.$onAuthStateChanged(function (authUser) {
             if (authUser) {
                 var gatesRef = ref.child('gatesByEventsID').child(event.id); // gate by eventsID

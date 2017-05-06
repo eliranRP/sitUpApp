@@ -7,8 +7,9 @@
         </div>
     </div>
     <div class="page-content">
-        <div ng-click="showBarcode(ticket)"  class="card link ks-pb-popup-dark" ng-repeat="(key,ticket) in ticketsList">
-            <div class="card-header">{{ticket.event.homeTeam.City +ticket.event.homeTeam.Name}} vs. {{ticket.event.awayTeam.City + ticket.event.awayTeam.Name}}
+        <div ng-click="showBarcode(ticket)" class="card link ks-pb-popup-dark" ng-repeat="(key,ticket) in ticketsList">
+            <div style="font-size:.9rem" class="card-header">
+                {{ticket.event.homeTeam.City +ticket.event.homeTeam.Name}} vs. {{ticket.event.awayTeam.City + ticket.event.awayTeam.Name}}
                 <div class="ks-facebook-avatar"><img ng-src="{{ticket.event.eventImage}}" style="width:34px; height:34px;" /></div>
             </div>
             <div class="card-content">
@@ -21,7 +22,8 @@
                     <p> שער {{ticket.gateNum}} ,  מספר כיסא - {{ticket.seatNumber}} ,  שורה -  {{ticket.row}}</p>
                 </div>
             </div>
-            <div class="card-footer"></div>
+            <div class="card-footer">
+            </div>
         </div>
     </div>
 </div>

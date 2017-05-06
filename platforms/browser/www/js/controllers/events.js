@@ -5,6 +5,17 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
     $scope.logos = [];
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
+    
+    if (!$rootScope.isPostBack) {
+        myApp.showPreloader();
+
+        setTimeout(function () {
+            myApp.hidePreloader();
+            $rootScope.isPostBack = true;
+        }, 1200);
+    }
+
+
     auth.$onAuthStateChanged(function (authUser) {
         if (authUser) {
 

@@ -38,8 +38,9 @@
                             <div class="item-inner">
                                 <div class="item-title floating-label">סיסמה</div>
                                 <div class="item-input">
-                                    <input ng-required="true" ng-model="user.password" type="password" placeholder="" />
-                                </div>
+                                    <input ng-required="true" ng-minlength="6" ng-model="user.password" type="password" />
+                                  </div>
+
                             </div>
                         </div>
                     </li>
@@ -49,7 +50,7 @@
                             <div class="item-inner">
                                 <div class="item-title floating-label">טלפון</div>
                                 <div class="item-input">
-                                    <input ng-required="true" ng-model="user.tel" type="tel" placeholder="" />
+                                    <input name="tel" ng-required="true" ng-minlength="10" ng-model="user.tel" type="number"/>
                                 </div>
                             </div>
                         </div>

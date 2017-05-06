@@ -140,15 +140,24 @@ a.item-link {
     margin-left: 8px !important;
 }
 
-.onSlae{
-    color:white;
-    font-size:1.2rem;
-    margin:auto;
-    top:50%;
+.onSlae {
+    color: white;
+    font-size: 1.2rem;
+    margin: auto;
+    top: 50%;
 }
-.ticketImage{
-    max-height:100px;
-    max-width:100px;
+
+.ticketImage {
+    max-height: 100px;
+    max-width: 100px;
     /*padding:20px;*/
-    float:left;
+    float: left;
+}
+
+ul.ticket-cards :last-child {
+    margin-bottom: 4rem;
+}
+
+.blue {
+    background-color: #2196f3;
 }
