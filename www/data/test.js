@@ -77,7 +77,7 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
         ref.child('events').child(eventID).set(event); //userinfo
 
         // gate
-        for (var i = 1; i < 6; i++) {
+        for (var i = 1; i < 5; i++) {
             var gateInEventID = ref.child('gatesByEventsID').push().key;
             ref.child('gatesByEventsID').child(eventID).child(gateInEventID).set({
                 date: firebase.database.ServerValue.TIMESTAMP,

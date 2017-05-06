@@ -46,7 +46,7 @@
                         <div class="card-footer" style="color:dimgrey;">
                             <a style="padding-top:.4rem;" href="#" class="link ks-pb-popup-dark">
                                 <i class="material-icons">remove_red_eye</i>
-                                <span class="card-text-bottom">{{filterSeat.counter}}</span>
+                                <span class="card-text-bottom">{{ticketsList[filterSeat].counter}}</span>
                             </a>
                             <a ng-if="ticketsList[filterSeat].onSale==false" ng-click="makeTicketAvailable(ticketsList[filterSeat])" href="#" class="link">שחרר כיסא</a>
                             <a ng-if="ticketsList[filterSeat].onSale" ng-click="pullTicketBack(ticketsList[filterSeat])" href="#" class="link">משוך כיסא</a>

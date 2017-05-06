@@ -30,7 +30,7 @@
                       currency: "שח",
                       amount: seat.amount,
                       imageUrl: seat.imageUrl,
-                      counter: 0,
+                      counter: seat.counter,
                       event: seat.event,
                   }
                   update['/unavaliableSeatsByEventID/' + seat.event.id + '/' + seat.id] = newTicket;

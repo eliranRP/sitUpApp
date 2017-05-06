@@ -76,6 +76,7 @@
               }
           },
           addReview: function (ticket, curUser, review) {
+              if (review == '' || review == null) return;
               var newReviewKey = firebase.database().ref().child('reviewsBySeatID').child(ticket.id).push().key; // create key 
               var update = {};
               var newTicket = {

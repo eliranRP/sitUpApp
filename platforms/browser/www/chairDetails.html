@@ -68,10 +68,10 @@
                                     <div class="item-inner">
                                         <div class="item-title-row">
                                             <div class="item-title">
-                                                {{rev.ticket.event.homeTeam.Name}} vs. {{rev.ticket.event.awayTeam.Name}}
+                                              {{ rev.date |  date :  "MMM d, y h:mm:ss a"  }}
                                             </div>
-                                            <div class="item-after">{{ rev.date |  date :  "MMM d, y h:mm:ss a"  }}</div>
                                         </div>
+                                        <div class="item-subtitle">{{rev.ticket.event.homeTeam.Name}} vs. {{rev.ticket.event.awayTeam.Name}}</div>
                                         <div class="item-text">{{rev.review}}</div>
                                     </div>
                                 </a>
