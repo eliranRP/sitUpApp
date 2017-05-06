@@ -25,5 +25,9 @@ function ($scope, $http, $rootScope, $firebaseAuth, $firebaseArray) {
                 mainView.router.loadPage(url);
             };
         }
+        else {
+            $rootScope.currentUser = '';
+            mainView.router.loadPage("login.html");
+        }
     });
 }])

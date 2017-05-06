@@ -76,5 +76,9 @@
                     photoBrowserLazy.open();
                 });
             }
+            else {
+                $rootScope.currentUser = '';
+                mainView.router.loadPage("login.html");
+            }
         });
     }])

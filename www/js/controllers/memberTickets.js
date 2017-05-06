@@ -78,6 +78,10 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseObject, $firebas
 
 
         }
+        else {
+            $rootScope.currentUser = '';
+            mainView.router.loadPage("login.html");
+        }
     });
 }]);
 

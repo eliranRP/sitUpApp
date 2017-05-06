@@ -35,7 +35,7 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                 });
             }); //make sure data is loaded
 
-            $scope.onPurchase = function (seat,goBack) {
+            $scope.onPurchase = function (seat, goBack) {
                 myApp.modal({
                     title: 'רכישת ברטיס',
                     text: 'המשך הרכישה תתבצע באתר PayPal',
@@ -44,9 +44,9 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
                           text: 'אישור',
                           onClick: function () {
                               Purchase.paypalPurchase();
-                              Purchase.createBarcode();
+                              var newBarcode = Purchase.createBarcode();
                               Purchase.deleteTicketOnUser(seat, authUser);
-                              Purchase.setTicketOnBuyer(seat, authUser);
+                              Purchase.setTicketOnBuyer(seat, authUser, newBarcode);
                               if (goBack) {
                                   mainView.back({
                                       url: mainView.history[mainView.history.length - 2],
@@ -93,6 +93,10 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray, Purchase)
             $('#tab111').on('show', function () {
                 $(this).find('.swiper-container')[0].swiper.update()
             });
+        }
+        else {
+            $rootScope.currentUser = '';
+            mainView.router.loadPage("login.html");
         }
     });
 }]);

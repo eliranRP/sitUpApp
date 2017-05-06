@@ -52,5 +52,9 @@ function ($scope, $rootScope, $firebaseAuth, $timeout, $firebaseArray) {
                 });
             }
         }
+        else {
+            $rootScope.currentUser = '';
+            mainView.router.loadPage("login.html");
+        }
     });
 }]);

@@ -1,16 +1,17 @@
 ﻿mainApp.factory('Purchase',
-  ['Notifications',function (Notifications) {
+  ['Notifications', function (Notifications) {
       var myObject;
+      var ref = firebase.database().ref();
       var barcodeUrl = 'http://www.barcodes4.me/barcode/qr/ticket.png?value=';
       myObject = {
           paypalPurchase: function () {
               return true;
           },
-          createBarcode: function () {
-              http://www.barcodes4.me/barcode/qr/myfilename.png?value=My%20QR%20Code
-              return true;
+          createBarcode: function (currentUser) {
+              var key = ref.child('users').push().key; // create key 
+              return barcodeUrl + key;
           },
-          setTicketOnBuyer: function (seat,currentUser) {
+          setTicketOnBuyer: function (seat, currentUser,newBarcode) {
               if (seat) {
                   var update = {};
                   var newTicket = {
@@ -25,7 +26,7 @@
                       row: seat.row,
                       gateNum: seat.gateNum,
                       seatNumber: seat.seatNumber,
-                      barcode: seat.barcode, // also should set the new barcode
+                      barcode: newBarcode, // set the new barcode
                       currency: "שח",
                       amount: seat.amount,
                       imageUrl: seat.imageUrl,
