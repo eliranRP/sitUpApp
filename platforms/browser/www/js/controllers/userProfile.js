@@ -51,11 +51,8 @@
                     callBack.$complete(function (url) {
                         if ($scope.currentUser) {
                             $scope.currentUser.photoURL = url.downloadURL;
+                            $scope.isLoad = false;
 
-                            //$timeout(function () {
-                            //    $scope.isLoad = false;
-                            //});
-                           
                         }
 
                     }); //$complete
