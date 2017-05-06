@@ -1,11 +1,13 @@
 ﻿mainApp.factory('Purchase',
   ['Notifications',function (Notifications) {
       var myObject;
+      var barcodeUrl = 'http://www.barcodes4.me/barcode/qr/ticket.png?value=';
       myObject = {
           paypalPurchase: function () {
               return true;
           },
           createBarcode: function () {
+              http://www.barcodes4.me/barcode/qr/myfilename.png?value=My%20QR%20Code
               return true;
           },
           setTicketOnBuyer: function (seat,currentUser) {
@@ -56,10 +58,11 @@
               var userRef = firebase.database().ref().child('users').child(seat.lastBuyer);
               userRef.once('value').then(function (snapshot) {
                   var usersList = new Array();
+                  usersList.push(snapshot.val())
                   var data = {
-                      userList: usersList.push(snapshot.val()),
-                      message: " הכרטיס למשחק" + seat.event.homeTeam.Name + " נגד " +
-                             seat.event.awayTeam.Name + "נמכר ",
+                      userList: usersList,
+                      message: "  הכרטיס למשחק  " + seat.event.homeTeam.Name + " נגד " +
+                             seat.event.awayTeam.Name + "   נמכר!!  ",
                       imageUrl: seat.event.eventImage
                   }
                   Notifications.send(data); // send push on $http

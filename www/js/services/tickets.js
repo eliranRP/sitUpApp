@@ -1,6 +1,6 @@
 ﻿mainApp.factory('Tickets',
-  ['$rootScope', '$firebaseObject', '$http',
-  function ($rootScope, $firebaseObject, $http) {
+  ['$rootScope', '$firebaseObject', '$http','Notifications',
+  function ($rootScope, $firebaseObject, $http, Notifications) {
       var myObject;
       myObject = {
           pullTicketBack: function (ticket, userID) {
@@ -31,8 +31,11 @@
               update['/unavaliableSeatsByMemberIDAndEventID/' + userID + '/' + ticket.event.id + '/' + 'onSale'] = false;
 
               return firebase.database().ref().update(update).then(function () {
+                  var msg = 'הכרטיס אינו עומד למכירה!'
+                  Notifications.addNotification(msg)
               }).catch(function (error) {
-                  myApp.alert('שגיאה! נסה שוב')
+                  var msg = 'שגיאה! נסה שוב'
+                  Notifications.addNotification(msg)
                   console.log(error)
               }); //update
           },
@@ -63,9 +66,11 @@
                   update['/unavaliableSeatsByMemberIDAndEventID/' + userID + '/' + ticket.event.id + '/' + 'onSale'] = true;
 
                   return firebase.database().ref().update(update).then(function () {
-                      myApp.alert('הכרטיס הועבר למכירה, עד ביצוע המכירה תוכל לצפות בכרטיס בדף - הכרטיסים שלי')
+                      var msg = 'הכרטיס הועבר למכירה, עד ביצוע המכירה תוכל לצפות בכרטיס בדף - הכרטיסים שלי'
+                      Notifications.addNotification(msg)
                   }).catch(function (error) {
-                      myApp.alert('שגיאה! נסה שוב')
+                      var msg = 'שגיאה! נסה שוב'
+                      Notifications.addNotification(msg)
                       console.log(error)
                   }); //update
               }
