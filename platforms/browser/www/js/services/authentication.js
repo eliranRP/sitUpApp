@@ -7,8 +7,8 @@
       var SENDER_ID = "588870694508";
       document.addEventListener("deviceready", onCordovaReady, false);
 
-      var notification_id;
-      var user_platform;
+      var notification_id='';
+      var user_platform='';
 
       function onCordovaReady() {
           console.log('onCordovaReady')
@@ -136,8 +136,8 @@
                         .child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
                             platform: user_platform,
-                            //notification_id:notification_id,
-                            //uid: regUser.uid,
+                            notification_id:notification_id,
+                            uid: regUser.uid,
                             displayName: user.displayName,
                             password: user.password,
                             photoURL: 'https://firebasestorage.googleapis.com/v0/b/situp-50a6b.appspot.com/o/profileImageDef%2FdefProfile.png?alt=media&token=b77ce80d-d54c-4edf-8b72-20d110ce8e08',

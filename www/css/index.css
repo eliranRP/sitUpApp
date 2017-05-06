@@ -154,9 +154,6 @@ a.item-link {
     float: left;
 }
 
-ul.ticket-cards :last-child {
-    margin-bottom: 4rem;
-}
 
 .blue {
     background-color: #2196f3;

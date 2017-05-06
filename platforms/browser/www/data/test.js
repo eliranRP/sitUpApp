@@ -84,15 +84,15 @@ function ($scope, $http, $rootScope, $firebaseAuth) {
                 id: gateInEventID,
                 currency: "שח",
                 number: i,
-                maxPrice: Math.floor(Math.random() * 100) + ((i + 1) * 100),
-                minPrice: Math.floor(Math.random() * 10 * i * 2) + 500,
+                maxPrice: Math.floor(Math.random() * 299) + ((i + 1) * 500),
+                minPrice: Math.floor(Math.random() * 10 * i * 2) + 100,
             });
             //seats
-            for (k = 1, m = 1; k < 5; k++, m++) {
+            for (k = 1, m = 1; k < 20; k++, m++) {
                 var seatID = ref.child('avaliableSeatsByGateID').child(gateInEventID).push().key;
                 var membersID = ref.child('members').push().key;
                 var barcode ='http://www.simonblog.com/wordpress/wp-content/uploads/2008/11/qrcode_simonblog.png';
-                var amount = Math.floor(Math.random() * 200) + 100;
+                var amount = Math.floor(Math.random() * 600) + 20;
                 var rand = Math.floor(Math.random() * 10) + 1;
                 var avaliable;
                 if (rand > 5)
