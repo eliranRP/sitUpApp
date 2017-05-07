@@ -27,7 +27,7 @@
                 $scope.imageUpload = function (element) {
 
 
-                    var file =element.files[0];
+                    var file = element.files[0];
                     var type = file.type.split("/")[0];
 
                     if (type != 'image') {
@@ -57,19 +57,11 @@
 
                     }); //$complete
                 }
-                try{
-                    var userRef = ref.child('users').child(authUser.uid);
-                    var userObj = $firebaseObject(userRef);
-                    userObj.$bindTo($scope, 'currentUser').then(function () {
-                        console.log($scope.currentUser);
-                    })
-                }
-                catch (e) {
-                    console.log(e.message)
-                }
-
-
-
+                var userRef = ref.child('users').child(authUser.uid);
+                var userObj = $firebaseObject(userRef);
+                userObj.$bindTo($scope, 'currentUser').then(function () {
+                    console.log($scope.currentUser);
+                });
             } //authUser
             else {
                 $rootScope.currentUser = '';

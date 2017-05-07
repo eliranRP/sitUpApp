@@ -16,7 +16,7 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
 
 })
 .config(['$compileProvider', function ($compileProvider){
-    $compileProvider.debugInfoEnabled(false);
+    //$compileProvider.debugInfoEnabled(false);
     window.location.hash = "#!/login.html";
     //ticketsByCamera
     //events
