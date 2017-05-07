@@ -15,7 +15,8 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
     mainView = myApp.addView('.view-main', {});
 
 })
-.config(function () {
+.config(['$compileProvider', function ($compileProvider){
+    $compileProvider.debugInfoEnabled(false);
     window.location.hash = "#!/login.html";
     //ticketsByCamera
     //events
@@ -26,7 +27,7 @@ var mainApp = angular.module("AngularApp", ['firebase', 'ngAnimate', 'ngSanitize
     //memberTicketsList
     //ticketsByList
 
-})
+}])
 
 .controller("RootController", ["$scope", function ($scope) {
 
